@@ -10,10 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    one_of_four.cpp \
+    question_base.cpp \
+    test.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    one_of_four.h \
+    question_base.h \
+    test.h
 
 FORMS += \
     mainwindow.ui
