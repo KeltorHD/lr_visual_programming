@@ -2,14 +2,16 @@
 #define QUESTION_BASE_H
 
 #include <QString>
-#include <fstream>
+#include <QFile>
+#include <QTextStream>
 
 class Question_base
 {
 public:
-    Question_base();
+    Question_base() = default;
+    virtual ~Question_base() = default;
 
-    friend std::ifstream& operator>>(std::ifstream& ifs, Question_base* base);
+    virtual void input(QFile& file) = 0;
 
 protected:
     QString question;
