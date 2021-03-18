@@ -1,20 +1,16 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include "question_base.h"
+#include "one_of_four.h"
+#include "some_of_four.h"
+#include "write_answer.h"
+#include "installation_of_correspondence.h"
 
 #include <array>
 #include <vector>
 #include <QString>
-
-
-enum class test_type
-{
-    one_of_four = 1,
-    some_of_four = 2,
-    write_answer = 3,
-    installation_of_correspondence = 4
-};
+#include <QFile>
+#include <QDebug>
 
 class Test
 {
@@ -24,7 +20,12 @@ public:
     /*считывание из файл*/
     void init();
 
+    void reset();
+
     const size_t& get_counter_answers() const {return counter_answers;}
+    const size_t& get_current_index() const {return current_index;}
+
+    const test_type &get_current_type() const;
 
     /*ответ на первый тип*/
     bool check_answer(size_t index, int answer);
@@ -40,7 +41,7 @@ private:
     size_t counter_answers{0};
     /*вопрос и его статус: правильно или нет*/
     std::array<std::pair<Question_base*, bool>, 10> questions{};
-
+    std::array<bool, 10> answers;
 };
 
 #endif // TEST_H

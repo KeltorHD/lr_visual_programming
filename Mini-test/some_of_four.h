@@ -10,7 +10,7 @@ class Some_of_four : public Question_base
 public:
     Some_of_four() = default;
 
-    void input(QFile& file) override;
+    void input(QTextStream& file_stream) override;
 
     const std::vector<int>& get_correct_answer(){return correct_answer;}
     const std::array<QString, 4>& get_answers(){return answers;}

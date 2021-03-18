@@ -8,7 +8,7 @@ class Write_answer : public Question_base
 public:
     Write_answer() = default;
 
-    void input(QFile& file) override;
+    void input(QTextStream& file_stream) override;
 
     const QString& get_correct_answer(){return correct_answer;}
 

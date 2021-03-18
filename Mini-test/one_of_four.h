@@ -4,13 +4,14 @@
 #include "question_base.h"
 
 #include <array>
+#include <QDebug>
 
 class One_of_four : public Question_base
 {
 public:
     One_of_four() = default;
 
-    void input(QFile& file) override;
+    void input(QTextStream& file_stream) override;
 
     int get_correct_answer(){return correct_answer;}
     const std::array<QString, 4>& get_answers(){return answers;}

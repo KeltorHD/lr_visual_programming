@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>questions.txt</file>    
+    </qresource>
+</RCC>

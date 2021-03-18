@@ -8,7 +8,7 @@ class Installation_of_correspondence : public Question_base
 public:
     Installation_of_correspondence() = default;
 
-    void input(QFile& file) override;
+    void input(QTextStream& file_stream) override;
 
     const std::array<QString, 4>& get_correct_answer(){return correct_answer;}
     const std::array<QString, 4>& get_answers(){return answers;}

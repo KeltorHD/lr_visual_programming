@@ -1,16 +1,15 @@
 #include "some_of_four.h"
 
-void Some_of_four::input(QFile& file)
+void Some_of_four::input(QTextStream& file_stream)
 {
-    QTextStream ifs(&file);
-    this->question = ifs.readLine();
+    this->question = file_stream.readLine();
     for (size_t i = 0; i < 4; i++)
     {
-        this->answers[i] = ifs.readLine();
+        this->answers[i] = file_stream.readLine();
     }
-    size_t count{ifs.read(4).toULongLong()};
+    size_t count{file_stream.readLine().toULongLong()};
     for(size_t i = 0; i < count; i++)
     {
-        this->correct_answer[i] = ifs.read(4).toULongLong();
+        this->correct_answer.push_back(file_stream.readLine().toULongLong());
     }
 }

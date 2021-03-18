@@ -1,8 +1,7 @@
 #include "write_answer.h"
 
-void Write_answer::input(QFile &file)
+void Write_answer::input(QTextStream& file_stream)
 {
-    QTextStream ifs(&file);
-    this->question = ifs.readLine();
-    this->correct_answer = ifs.readLine();
+    this->question = file_stream.readLine();
+    this->correct_answer = file_stream.readLine();
 }
