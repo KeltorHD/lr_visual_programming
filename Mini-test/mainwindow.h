@@ -34,6 +34,8 @@ private slots:
 
     void on_to_test_clicked();
 
+    void on_next_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer* time_line;
@@ -41,5 +43,7 @@ private:
     Test test;
 
     void enable_buttons(bool enable);
+
+    void fill_question();
 };
 #endif // MAINWINDOW_H

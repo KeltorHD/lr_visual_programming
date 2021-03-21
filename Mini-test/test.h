@@ -22,10 +22,17 @@ public:
 
     void reset();
 
+    void set_current_index(size_t index) {this->current_index = index;}
+
     const size_t& get_counter_answers() const {return counter_answers;}
     const size_t& get_current_index() const {return current_index;}
 
     const test_type &get_current_type() const;
+    const QString& get_question() const {return this->questions[this->current_index].first->get_question();}
+
+    std::array<QString, 4> get_answers_1() const;
+    std::array<QString, 4> get_answers_2() const;
+    std::pair<std::array<QString, 4>, std::array<QString, 4>> get_answers_4() const;
 
     /*ответ на первый тип*/
     bool check_answer(size_t index, int answer);

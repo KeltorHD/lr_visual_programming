@@ -27,6 +27,46 @@ void MainWindow::enable_buttons(bool enable)
     ui->check_button->setEnabled(enable);
 }
 
+void MainWindow::fill_question()
+{
+    this->ui->question->setText(this->test.get_question());
+    this->ui->question_2->setText(this->test.get_question());
+    this->ui->question_3->setText(this->test.get_question());
+    this->ui->question_4->setText(this->test.get_question());
+
+    switch (this->test.get_current_type())
+    {
+    case test_type::one_of_four:
+        ui->answer1->setText(this->test.get_answers_1()[0]);
+        ui->answer2->setText(this->test.get_answers_1()[1]);
+        ui->answer3->setText(this->test.get_answers_1()[2]);
+        ui->answer4->setText(this->test.get_answers_1()[3]);
+        break;
+    case test_type::some_of_four:
+        ui->answer1_2->setText(this->test.get_answers_2()[0]);
+        ui->answer2_2->setText(this->test.get_answers_2()[1]);
+        ui->answer3_2->setText(this->test.get_answers_2()[2]);
+        ui->answer4_2->setText(this->test.get_answers_2()[3]);
+        break;
+    case test_type::write_answer:
+        break;
+    case test_type::installation_of_correspondence:
+        ui->text1->setText(this->test.get_answers_4().first[0]);
+        ui->text2->setText(this->test.get_answers_4().first[1]);
+        ui->text3->setText(this->test.get_answers_4().first[2]);
+        ui->text4->setText(this->test.get_answers_4().first[3]);
+        auto arr{this->test.get_answers_4().second};
+        for (size_t i = 0; 4; i++)
+        {
+            ui->combo1->addItem(arr[i]);
+            ui->combo2->addItem(arr[i]);
+            ui->combo3->addItem(arr[i]);
+            ui->combo4->addItem(arr[i]);
+        }
+        break;
+    }
+}
+
 void MainWindow::update_progress_bar()
 {
     if (this->ui->progress_bar->value() >= seconds)
@@ -50,9 +90,20 @@ void MainWindow::on_start_testing_clicked()
 
     this->test.reset();
     this->ui->type_answers->setCurrentIndex(int(state_type(this->test.get_current_type())));
+    this->fill_question();
 }
 
 void MainWindow::on_to_test_clicked()
 {
     ui->tabWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_next_button_clicked()
+{
+    if (this->test.get_current_index() < 9)
+    {
+        this->test.set_current_index(this->test.get_current_index());
+    }
+    this->ui->type_answers->setCurrentIndex(int(state_type(this->test.get_current_type())));
+    this->fill_question();
 }

@@ -59,3 +59,21 @@ const test_type &Test::get_current_type() const
 {
     return this->questions[this->current_index].first->get_type();
 }
+
+std::array<QString, 4> Test::get_answers_1() const
+{
+    One_of_four* q {dynamic_cast<One_of_four*>(this->questions[this->current_index].first)};
+    return q->get_answers();
+}
+
+std::array<QString, 4> Test::get_answers_2() const
+{
+    Some_of_four* q {dynamic_cast<Some_of_four*>(this->questions[this->current_index].first)};
+    return q->get_answers();
+}
+
+std::pair<std::array<QString, 4>, std::array<QString, 4> > Test::get_answers_4() const
+{
+    Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
+    return q->get_answers();
+}

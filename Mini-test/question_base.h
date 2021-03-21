@@ -21,9 +21,10 @@ public:
 
     virtual void input(QTextStream& file_stream) = 0;
 
+    /*get set*/
     const test_type& get_type(){return type;}
-
     void set_type(test_type type){this->type = type;}
+    const QString& get_question(){return question;}
 
 protected:
     QString question;

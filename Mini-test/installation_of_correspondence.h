@@ -11,7 +11,8 @@ public:
     void input(QTextStream& file_stream) override;
 
     const std::array<QString, 4>& get_correct_answer(){return correct_answer;}
-    const std::array<QString, 4>& get_answers(){return answers;}
+    /*answer, answer*/
+    std::pair<std::array<QString, 4>, std::array<QString, 4>> get_answers();
 
 private:
     std::array<QString, 4> answers;

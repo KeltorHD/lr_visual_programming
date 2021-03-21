@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>828</width>
-    <height>555</height>
+    <width>800</width>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Мини-тестирование</string>
@@ -18,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="info">
        <attribute name="title">
@@ -108,7 +114,7 @@
         <item>
          <widget class="QStackedWidget" name="type_answers">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="start_test">
            <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -193,6 +199,9 @@
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -328,6 +337,9 @@
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -450,6 +462,9 @@
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -490,28 +505,28 @@
               <item>
                <layout class="QGridLayout" name="gridLayout_4">
                 <item row="0" column="0">
-                 <widget class="QCheckBox" name="answer1_3">
+                 <widget class="QCheckBox" name="answer1_2">
                   <property name="text">
                    <string>Ответ1</string>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QCheckBox" name="answer3_3">
+                 <widget class="QCheckBox" name="answer3_2">
                   <property name="text">
                    <string>Ответ3</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QCheckBox" name="answer2_3">
+                 <widget class="QCheckBox" name="answer2_2">
                   <property name="text">
                    <string>Ответ2</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QCheckBox" name="answer4_3">
+                 <widget class="QCheckBox" name="answer4_2">
                   <property name="text">
                    <string>Ответ4</string>
                   </property>
@@ -571,6 +586,9 @@
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -707,7 +725,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>828</width>
+     <width>800</width>
      <height>21</height>
     </rect>
    </property>
