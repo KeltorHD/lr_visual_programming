@@ -13,10 +13,10 @@ QT_END_NAMESPACE
 enum class state_type
 {
     start = 0,
-    one_of_four = 2,
-    some_of_four = 3,
-    write_answer = 4,
-    installation_of_correspondence = 1
+    one_of_four = 1,
+    some_of_four = 2,
+    write_answer = 3,
+    installation_of_correspondence = 4
 };
 
 class MainWindow : public QMainWindow
@@ -35,6 +35,10 @@ private slots:
     void on_to_test_clicked();
 
     void on_next_button_clicked();
+
+    void on_prev_button_clicked();
+
+    void on_check_button_clicked();
 
 private:
     Ui::MainWindow *ui;

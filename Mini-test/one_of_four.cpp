@@ -7,5 +7,5 @@ void One_of_four::input(QTextStream& file_stream)
     {
         this->answers[i] = file_stream.readLine();
     }
-    this->correct_answer = file_stream.readLine().toInt();
+    this->correct_answer = file_stream.readLine().toULongLong();
 }

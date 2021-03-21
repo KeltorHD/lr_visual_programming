@@ -24,6 +24,7 @@ public:
 
     void set_current_index(size_t index) {this->current_index = index;}
 
+    bool is_current_question_closed() const {return this->answers[this->current_index];}
     const size_t& get_counter_answers() const {return counter_answers;}
     const size_t& get_current_index() const {return current_index;}
 
@@ -34,20 +35,21 @@ public:
     std::array<QString, 4> get_answers_2() const;
     std::pair<std::array<QString, 4>, std::array<QString, 4>> get_answers_4() const;
 
-    /*ответ на первый тип*/
-    bool check_answer(size_t index, int answer);
-    /*ответ на второй тип*/
-    bool check_answer(size_t index, std::vector<int> answers);
+    /*ответ на первый тип, номер ответа по счету*/
+    void check_answer1(size_t answer);
+    /*ответ на второй тип, да или нет, по счету*/
+    void check_answer2(std::vector<int> answers);
     /*ответ на третий тип*/
-    bool check_answer(size_t index, QString answer);
+    void check_answer3(QString answer);
     /*ответ на четвертый тип*/
-    bool check_answer(size_t index, std::vector<QString> answer);
+    void check_answer4(std::array<QString, 4> answer);
 
 private:
     size_t current_index{0};
     size_t counter_answers{0};
     /*вопрос и его статус: правильно или нет*/
     std::array<std::pair<Question_base*, bool>, 10> questions{};
+    /*есть ли ответ на вопрос*/
     std::array<bool, 10> answers;
 };
 

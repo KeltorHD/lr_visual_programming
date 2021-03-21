@@ -1,6 +1,7 @@
 #include "test.h"
 
 #include <QRandomGenerator>
+#include <algorithm>
 
 void Test::init()
 {
@@ -76,4 +77,68 @@ std::pair<std::array<QString, 4>, std::array<QString, 4> > Test::get_answers_4()
 {
     Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
     return q->get_answers();
+}
+
+void Test::check_answer1(size_t answer)
+{
+    One_of_four* q {dynamic_cast<One_of_four*>(this->questions[this->current_index].first)};
+    if (q->get_correct_answer() == answer)
+    {
+        this->questions[this->current_index].second = true;
+    }
+
+    this->answers[this->current_index] = true;
+}
+
+void Test::check_answer2(std::vector<int> answers)
+{
+    Some_of_four* q {dynamic_cast<Some_of_four*>(this->questions[this->current_index].first)};
+    try
+    {
+        for (size_t i = 0; i < std::max(answers.size(), q->get_correct_answer().size()); i++)
+        {
+            if (answers.at(i) != q->get_correct_answer().at(i))
+                throw std::logic_error("");
+        }
+
+        this->questions[this->current_index].second = true;
+    }
+    catch (std::exception& e)
+    {
+
+    }
+
+    this->answers[this->current_index] = true;
+}
+
+void Test::check_answer3(QString answer)
+{
+    Write_answer* q {dynamic_cast<Write_answer*>(this->questions[this->current_index].first)};
+
+    if (q->get_correct_answer() == answer.toLower())
+        this->questions[this->current_index].second = true;
+
+    this->answers[this->current_index] = true;
+}
+
+void Test::check_answer4(std::array<QString, 4> answer)
+{
+    Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
+
+    try
+    {
+        for (size_t i = 0; i < 4; i++)
+        {
+            if (q->get_correct_answer()[i] != answer[i])
+                throw std::logic_error("");
+        }
+
+        this->questions[this->current_index].second = true;
+    }
+    catch (std::exception& e)
+    {
+
+    }
+
+    this->answers[this->current_index] = true;
 }
