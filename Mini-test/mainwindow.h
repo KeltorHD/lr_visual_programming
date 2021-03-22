@@ -40,6 +40,14 @@ private slots:
 
     void on_check_button_clicked();
 
+    void on_answer1_clicked();
+
+    void on_answer2_clicked();
+
+    void on_answer3_clicked();
+
+    void on_answer4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer* time_line;

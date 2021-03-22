@@ -45,7 +45,6 @@ void Test::init()
 
 void Test::reset()
 {
-    this->counter_answers = 0;
     this->current_index = 0;
 
     for (size_t i = 0; i < 10; i++)
@@ -54,6 +53,17 @@ void Test::reset()
         this->questions[i].second = false;
     }
     std::random_shuffle(this->questions.begin(), this->questions.end());
+}
+
+size_t Test::get_counter_answers() const
+{
+    size_t counter{};
+    for (size_t i = 0; i < this->answers.size(); i++)
+    {
+        if (this->answers[i])
+            counter++;
+    }
+    return counter;
 }
 
 const test_type &Test::get_current_type() const
@@ -87,6 +97,7 @@ void Test::check_answer1(size_t answer)
         this->questions[this->current_index].second = true;
     }
 
+    q->set_current_answer(answer);
     this->answers[this->current_index] = true;
 }
 
@@ -108,6 +119,7 @@ void Test::check_answer2(std::vector<int> answers)
 
     }
 
+    q->set_current_answer(answers);
     this->answers[this->current_index] = true;
 }
 
@@ -118,6 +130,7 @@ void Test::check_answer3(QString answer)
     if (q->get_correct_answer() == answer.toLower())
         this->questions[this->current_index].second = true;
 
+    q->set_current_answer(answer);
     this->answers[this->current_index] = true;
 }
 
@@ -140,5 +153,30 @@ void Test::check_answer4(std::array<QString, 4> answer)
 
     }
 
+    q->set_current_answer(answer);
     this->answers[this->current_index] = true;
+}
+
+size_t Test::get_closed_answer1() const
+{
+    One_of_four* q {dynamic_cast<One_of_four*>(this->questions[this->current_index].first)};
+    return q->get_current_answer();
+}
+
+std::vector<int> Test::get_closed_answer2() const
+{
+    Some_of_four* q {dynamic_cast<Some_of_four*>(this->questions[this->current_index].first)};
+    return q->get_current_answer();
+}
+
+QString Test::get_closed_answer3() const
+{
+    Write_answer* q {dynamic_cast<Write_answer*>(this->questions[this->current_index].first)};
+    return q->get_current_answer();
+}
+
+std::array<QString, 4> Test::get_closed_answer4() const
+{
+    Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
+    return q->get_current_answer();
 }

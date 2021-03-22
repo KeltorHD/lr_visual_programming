@@ -13,12 +13,16 @@ public:
 
     void input(QTextStream& file_stream) override;
 
+    size_t get_current_answer() const {return current_answer;}
+    void   set_current_answer(size_t i) {this->current_answer = i;}
+
     size_t get_correct_answer(){return correct_answer;}
     const std::array<QString, 4>& get_answers(){return answers;}
 
 private:
     std::array<QString, 4> answers;
     size_t correct_answer;
+    size_t current_answer;
 };
 
 #endif // ONE_OF_FOUR_H
