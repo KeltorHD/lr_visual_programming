@@ -13,6 +13,18 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->to_show->setEnabled(false);
     ui->tabWidget->setCurrentIndex(0);
     ui->type_answers->setCurrentIndex(int(state_type::start));
+
+    /*results*/
+    for (size_t i = 0; i < this->results.size(); i++)
+    {
+        this->questions[i] = new QLabel(this);
+        this->results[i] = new QLabel(this);
+        this->lines[i] = new QFrame();
+        this->lines[i]->setFrameShape(QFrame::HLine);
+    }
+    this->lines[10] = new QFrame();
+    this->lines[10]->setFrameShape(QFrame::HLine);
+    this->result = new QLabel(this);
 }
 
 MainWindow::~MainWindow()
@@ -140,6 +152,7 @@ void MainWindow::update_progress_bar()
         this->time_line->stop();
         this->ui->progress_bar->setValue(0);
         this->enable_buttons(false);
+        this->ui->to_show->setEnabled(true);
         ui->type_answers->setCurrentIndex(int(state_type::start));
     }
     else
@@ -273,4 +286,96 @@ void MainWindow::on_answer4_clicked()
     this->ui->answer2->setChecked(false);
     this->ui->answer3->setChecked(false);
     this->ui->answer1->setChecked(false);
+}
+
+void MainWindow::on_to_show_clicked()
+{
+    /*заполнение данных о прохождении теста*/
+    this->result->setText("Ваш результат прохождения теста: " + QString::number(this->test.get_counter_correct_answers()) + "/10");
+    this->ui->layout_show->addWidget(this->result);
+    this->ui->layout_show->addWidget(this->lines[0]);
+
+    this->test.set_current_index(0);
+    for (size_t i = 0; i < 10 ; i++ )
+    {
+        this->questions[i]->setText("Вопрос: " + this->test.get_question());
+
+        QString result_tmp{QString("Вы ответили: ") + (this->test.is_current_question_correct() ? "правильно" : "неправильно") + "\n"};
+        switch (this->test.get_current_type())
+        {
+        case test_type::one_of_four:
+            result_tmp += "Ваш ответ: ";
+            if (this->test.is_current_question_closed())
+            {
+                result_tmp += this->test.get_answers_1()[this->test.get_closed_answer1()] + "\n";
+            }
+            else
+            {
+                result_tmp += "нет ответа\n";
+            }
+            result_tmp += "Правильный ответ: " + this->test.get_answers_1()[this->test.get_correct_answer1()] + "\n";
+            break;
+        case test_type::some_of_four:
+            result_tmp += "Ваш ответ: ";
+            if (this->test.is_current_question_closed())
+            {
+                for (size_t j = 0; j < this->test.get_closed_answer2().size(); j++)
+                {
+                    result_tmp += this->test.get_answers_2()[this->test.get_closed_answer2()[j]] + (j != this->test.get_closed_answer2().size() - 1 ? ", " : "\n");
+                }
+            }
+            else
+            {
+                result_tmp += "нет ответа\n";
+            }
+            result_tmp += "Правильный ответ: ";
+            for (size_t j = 0; j < this->test.get_correct_answer2().size(); j++)
+            {
+                result_tmp += this->test.get_answers_2()[this->test.get_correct_answer2()[j]] + (j != this->test.get_correct_answer2().size() - 1 ? ", " : "\n");
+            }
+            break;
+        case test_type::write_answer:
+            result_tmp += "Ваш ответ: ";
+            if (this->test.is_current_question_closed())
+            {
+                result_tmp += this->test.get_closed_answer3() + "\n";
+            }
+            else
+            {
+                result_tmp += "нет ответа\n";
+            }
+            result_tmp += "Правильный ответ: " + this->test.get_correct_answer3() + "\n";
+            break;
+        case test_type::installation_of_correspondence:
+            result_tmp += "Ваш ответ: ";
+            if (this->test.is_current_question_closed())
+            {
+                for (size_t j = 0; j < this->test.get_closed_answer4().size(); j++)
+                {
+                    result_tmp += this->test.get_answers_4().first[j] + ":" + this->test.get_closed_answer4()[j] + (j != this->test.get_closed_answer4().size() - 1 ? ", " : "\n");
+                }
+            }
+            else
+            {
+                result_tmp += "нет ответа\n";
+            }
+            result_tmp += "Правильный ответ: ";
+            for (size_t j = 0; j < this->test.get_correct_answer4().size(); j++)
+            {
+                result_tmp += this->test.get_answers_4().first[j] + ":" + this->test.get_correct_answer4()[j] + (j != this->test.get_correct_answer4().size() - 1 ? ", " : "\n");
+            }
+            break;
+        }
+
+        this->results[i]->setText(result_tmp);
+        this->results[i]->setWordWrap(true);
+        this->questions[i]->setWordWrap(true);
+        this->ui->layout_show->addWidget(this->questions[i]);
+        this->ui->layout_show->addWidget(this->results[i]);
+        this->ui->layout_show->addWidget(this->lines[i+1]);
+
+        this->test.set_current_index(i+1);
+    }
+
+    this->ui->result_stacked_widget->setCurrentIndex(1);
 }

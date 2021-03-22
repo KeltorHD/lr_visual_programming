@@ -66,6 +66,17 @@ size_t Test::get_counter_answers() const
     return counter;
 }
 
+size_t Test::get_counter_correct_answers() const
+{
+    size_t counter{};
+    for (size_t i = 0; i < this->questions.size(); i++)
+    {
+        if (this->questions[i].second)
+            counter++;
+    }
+    return counter;
+}
+
 const test_type &Test::get_current_type() const
 {
     return this->questions[this->current_index].first->get_type();
@@ -179,4 +190,28 @@ std::array<QString, 4> Test::get_closed_answer4() const
 {
     Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
     return q->get_current_answer();
+}
+
+size_t Test::get_correct_answer1() const
+{
+    One_of_four* q {dynamic_cast<One_of_four*>(this->questions[this->current_index].first)};
+    return  q->get_correct_answer();
+}
+
+std::vector<int> Test::get_correct_answer2() const
+{
+    Some_of_four* q {dynamic_cast<Some_of_four*>(this->questions[this->current_index].first)};
+    return  q->get_correct_answer();
+}
+
+QString Test::get_correct_answer3() const
+{
+    Write_answer* q {dynamic_cast<Write_answer*>(this->questions[this->current_index].first)};
+    return  q->get_correct_answer();
+}
+
+std::array<QString, 4> Test::get_correct_answer4() const
+{
+    Installation_of_correspondence* q {dynamic_cast<Installation_of_correspondence*>(this->questions[this->current_index].first)};
+    return  q->get_correct_answer();
 }

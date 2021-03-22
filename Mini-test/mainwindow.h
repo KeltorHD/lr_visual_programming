@@ -5,6 +5,8 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QLabel>
+#include <QFrame>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -48,11 +50,18 @@ private slots:
 
     void on_answer4_clicked();
 
+    void on_to_show_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer* time_line;
-    const int seconds{600};
+    const int seconds{60};
     Test test;
+    /*отображение текста*/
+    QLabel* result;
+    std::array<QLabel*, 10> questions;
+    std::array<QLabel*, 10> results;
+    std::array<QFrame*, 11> lines;
 
     void enable_buttons(bool enable);
 
