@@ -52,6 +52,8 @@ private slots:
 
     void on_to_show_clicked();
 
+    void on_done_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer* time_line;

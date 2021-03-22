@@ -38,6 +38,7 @@ void MainWindow::enable_buttons(bool enable)
     ui->next_button->setEnabled(enable);
     ui->prev_button->setEnabled(enable);
     ui->check_button->setEnabled(enable);
+    ui->done->setEnabled(enable);
 }
 
 void MainWindow::fill_question()
@@ -206,57 +207,44 @@ void MainWindow::on_prev_button_clicked()
 
 void MainWindow::on_check_button_clicked()
 {
-    if (this->test.get_counter_answers() == 9)
-    {
-        /*test done*/
-        this->ui->to_show->setEnabled(true);
-        this->ui->tabWidget->setCurrentIndex(2);
-        this->enable_buttons(false);
-        this->time_line->stop();
-        this->ui->progress_bar->setValue(0);
-        this->ui->type_answers->setCurrentIndex(int(state_type::start));
-    }
-    else
-    {
-        std::vector<int> arr2;
-        std::array<QString, 4> arr4;
+    std::vector<int> arr2;
+    std::array<QString, 4> arr4;
 
-        switch (this->test.get_current_type())
-        {
-        case test_type::one_of_four:
-            if (this->ui->answer1->isChecked())
-                this->test.check_answer1(0);
-            if (this->ui->answer2->isChecked())
-                this->test.check_answer1(1);
-            if (this->ui->answer3->isChecked())
-                this->test.check_answer1(2);
-            if (this->ui->answer4->isChecked())
-                this->test.check_answer1(3);
-            break;
-        case test_type::some_of_four:
-            if (this->ui->answer1_2->isChecked())
-                arr2.push_back(0);
-            if (this->ui->answer2_2->isChecked())
-                arr2.push_back(1);
-            if (this->ui->answer3_2->isChecked())
-                arr2.push_back(2);
-            if (this->ui->answer4_2->isChecked())
-                arr2.push_back(3);
-            if (!arr2.empty())
-                this->test.check_answer2(arr2);
-            break;
-        case test_type::write_answer:
-            if (this->ui->answer->text().size() != 0)
-                this->test.check_answer3(this->ui->answer->text());
-            break;
-        case test_type::installation_of_correspondence:
-            arr4[0] = this->ui->combo1->currentText();
-            arr4[1] = this->ui->combo2->currentText();
-            arr4[2] = this->ui->combo3->currentText();
-            arr4[3] = this->ui->combo4->currentText();
-            this->test.check_answer4(arr4);
-            break;
-        }
+    switch (this->test.get_current_type())
+    {
+    case test_type::one_of_four:
+        if (this->ui->answer1->isChecked())
+            this->test.check_answer1(0);
+        if (this->ui->answer2->isChecked())
+            this->test.check_answer1(1);
+        if (this->ui->answer3->isChecked())
+            this->test.check_answer1(2);
+        if (this->ui->answer4->isChecked())
+            this->test.check_answer1(3);
+        break;
+    case test_type::some_of_four:
+        if (this->ui->answer1_2->isChecked())
+            arr2.push_back(0);
+        if (this->ui->answer2_2->isChecked())
+            arr2.push_back(1);
+        if (this->ui->answer3_2->isChecked())
+            arr2.push_back(2);
+        if (this->ui->answer4_2->isChecked())
+            arr2.push_back(3);
+        if (!arr2.empty())
+            this->test.check_answer2(arr2);
+        break;
+    case test_type::write_answer:
+        if (this->ui->answer->text().size() != 0)
+            this->test.check_answer3(this->ui->answer->text());
+        break;
+    case test_type::installation_of_correspondence:
+        arr4[0] = this->ui->combo1->currentText();
+        arr4[1] = this->ui->combo2->currentText();
+        arr4[2] = this->ui->combo3->currentText();
+        arr4[3] = this->ui->combo4->currentText();
+        this->test.check_answer4(arr4);
+        break;
     }
 }
 
@@ -378,4 +366,15 @@ void MainWindow::on_to_show_clicked()
     }
 
     this->ui->result_stacked_widget->setCurrentIndex(1);
+}
+
+void MainWindow::on_done_clicked()
+{
+    /*test done*/
+    this->ui->to_show->setEnabled(true);
+    this->ui->tabWidget->setCurrentIndex(2);
+    this->enable_buttons(false);
+    this->time_line->stop();
+    this->ui->progress_bar->setValue(0);
+    this->ui->type_answers->setCurrentIndex(int(state_type::start));
 }
