@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
             << "2010" << "2011" << "2012"
             << "2013" << "2014" << "2015"
             << "2016" << "2017" << "2018"
-            << "2018" << "2020";
+            << "2019" << "2020";
 
     this->costs  = new QLabel("Впишите средние цены товаров по годам: ", this);
     this->costs->setWordWrap(true);
