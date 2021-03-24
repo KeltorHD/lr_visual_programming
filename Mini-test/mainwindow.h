@@ -57,7 +57,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTimer* time_line;
-    const int seconds{60};
+    const int seconds{600};
     Test test;
     /*отображение текста*/
     QLabel* result;

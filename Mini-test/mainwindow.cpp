@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->to_show->setEnabled(false);
     ui->tabWidget->setCurrentIndex(0);
     ui->type_answers->setCurrentIndex(int(state_type::start));
+    ui->result_stacked_widget->setCurrentIndex(0);
 
     /*results*/
     for (size_t i = 0; i < this->results.size(); i++)

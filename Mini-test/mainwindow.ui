@@ -24,7 +24,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="info">
        <attribute name="title">
@@ -52,10 +52,13 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Это введение в тест и рассказ, как его проходить</string>
+             <string>Вам предложено пройти тест, состоящий из 10 вопросов. Время на прохождение: 10 минут. По окончании тестирования можно просмотреть свой результат в 3-ей вкладке. Вопросы в тесте могут быть четырех видов: выбор одного ответа из четырех, выбор нескольких ответов из четырех, вписать ответ на вопрос, установить соответствие.</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -741,7 +744,7 @@
         <item>
          <widget class="QStackedWidget" name="result_stacked_widget">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="to_show_2">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
