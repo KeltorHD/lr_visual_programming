@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "hrefs.h"
+
 #include <QMainWindow>
 #include <QString>
 #include <QFile>
@@ -28,10 +30,14 @@ private:
     bool is_file_open{false};
     bool is_changed{false};
 
+    Hrefs* hrefs;
+
     void new_file();
     void save_file();
     void save_as();
     void open_file();
+
+    void hrefs_show();
 
 };
 #endif // MAINWINDOW_H
