@@ -17,7 +17,7 @@ public:
     explicit Hrefs(QWidget *parent = nullptr);
     ~Hrefs();
 
-    void set_data(std::vector<QString> href, std::vector<QString> images);
+    void set_data(std::vector<std::string> href, std::vector<std::string> images);
 
 private:
     Ui::Hrefs *ui;

@@ -4,6 +4,7 @@
 #include <vector>
 #include <regex>
 #include <string>
+#include <algorithm>
 
 static bool first{true};
 
@@ -233,8 +234,8 @@ void MainWindow::hrefs_show()
 {
     std::string to_find{this->ui->textEdit->toPlainText().toStdString()};
 
-    std::regex href_reg("href=\"(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*\"");
-    std::regex src_reg("src=\"(https?:\/\/)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*\"");
+    std::regex href_reg(R"foo(href="([^""']*)")foo");
+    std::regex src_reg(R"foo(src="([^""']*)")foo");
     std::vector<std::string> href
     {
         std::sregex_token_iterator{to_find.begin(), to_find.end(), href_reg, 0}, // Mark `0` here i.e. whole regex match
@@ -246,12 +247,11 @@ void MainWindow::hrefs_show()
         std::sregex_token_iterator{}
     };
 
+    for_each(href.begin(), href.end(), [](std::string& str){str.erase(0,6); str.erase(str.end()-1);});
+    for_each(image.begin(), image.end(), [](std::string& str){str.erase(0,5); str.erase(str.end()-1);});
 
-    for (size_t i = 0; i < image.size(); i++)
-    {
-        qDebug() << QString::fromUtf8(image[i].c_str());
-    }
-    qDebug() << "simple";
+    this->hrefs->set_data(href, image);
+    this->hrefs->show();
 }
 
 void MainWindow::on_textEdit_textChanged()
