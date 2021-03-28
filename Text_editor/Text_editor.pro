@@ -10,16 +10,21 @@ CONFIG += c++11
 
 SOURCES += \
     hrefs.cpp \
+    hrefs_erase.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     hrefs.h \
+    hrefs_erase.h \
     mainwindow.h
 
 FORMS += \
     hrefs.ui \
+    hrefs_erase.ui \
     mainwindow.ui
+
+RESOURCES += res.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

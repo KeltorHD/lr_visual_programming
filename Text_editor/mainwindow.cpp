@@ -20,8 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->save_as, &QAction::triggered,this,&MainWindow::save_as);
 
     connect(ui->hrefs_show, &QAction::triggered,this,&MainWindow::hrefs_show);
+    connect(ui->erase_show, &QAction::triggered,this,&MainWindow::erase_show);
 
+    this->erase = new Hrefs_erase(this->ui->textEdit, this);
     this->hrefs = new Hrefs(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -153,30 +156,7 @@ void MainWindow::open_file()
 {
     if (this->is_changed) /*если файлик изменен*/
     {
-        if (this->is_file_open) /*сохранение в тот же файлик*/
-        {
-            QFile file(this->filename);
-
-            if (!file.open(QIODevice::WriteOnly))
-            {
-                file.close();
-            }
-            else
-            {
-                QTextStream stream(&file);
-                //stream.setCodec("UTF-8");
-                stream.setGenerateByteOrderMark(false);
-                stream << this->ui->textEdit->toPlainText();
-                stream.flush();
-                file.close();
-            }
-
-            this->is_changed = false;
-            this->is_file_open = false;
-        }
-        else /*сохраняем в новый файлик*/
-        {
-            QString tmp_name = QFileDialog::getSaveFileName(this, tr("Save file"), "", tr("Text Files (*.txt)"));
+        QString tmp_name = QFileDialog::getSaveFileName(this, tr("Save file"), "", tr("Text Files (*.txt)"));
 
             if (!tmp_name.isNull())
             {
@@ -198,7 +178,6 @@ void MainWindow::open_file()
             }
 
             this->is_changed = false;
-        }
     }
 
     this->ui->textEdit->clear();
@@ -252,6 +231,11 @@ void MainWindow::hrefs_show()
 
     this->hrefs->set_data(href, image);
     this->hrefs->show();
+}
+
+void MainWindow::erase_show()
+{
+    this->erase->show();
 }
 
 void MainWindow::on_textEdit_textChanged()

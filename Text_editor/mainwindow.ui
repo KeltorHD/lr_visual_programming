@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>Текстовый редактор</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>:/ico.png</normalon>
+   </iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -88,7 +93,7 @@ p, li { white-space: pre-wrap; }
      <string>Операции с html</string>
     </property>
     <addaction name="hrefs_show"/>
-    <addaction name="action_6"/>
+    <addaction name="erase_show"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_html"/>
@@ -128,7 +133,7 @@ p, li { white-space: pre-wrap; }
     <string>Посмотреть все ссылки на другие страницы</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="erase_show">
    <property name="text">
     <string>Заменить все адреса на локальные</string>
    </property>

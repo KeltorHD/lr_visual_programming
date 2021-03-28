@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "hrefs.h"
+#include "hrefs_erase.h"
 
 #include <QMainWindow>
 #include <QString>
@@ -31,6 +32,7 @@ private:
     bool is_changed{false};
 
     Hrefs* hrefs;
+    Hrefs_erase* erase;
 
     void new_file();
     void save_file();
@@ -38,6 +40,8 @@ private:
     void open_file();
 
     void hrefs_show();
+    void erase_show();
+
 
 };
 #endif // MAINWINDOW_H
