@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>films.txt</file>
+        <file>genres.txt</file>
+        <file>producers.txt</file>
+    </qresource>
+</RCC>
