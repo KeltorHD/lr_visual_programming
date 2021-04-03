@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QList>
+#include <QStringList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,9 +23,9 @@ private:
     Ui::MainWindow *ui;
 
     /*жанры*/
-    QList<QString> genres;
+    QStringList genres;
     /*Режиссеры*/
-    QList<QString> producers;
+    QStringList producers;
     /*Фильмы*/
     QList<Film> films;
 
