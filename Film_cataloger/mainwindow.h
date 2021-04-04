@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include "film.h"
+#include "more.h"
+#include "change.h"
+#include "add.h"
 
 #include <QMainWindow>
 #include <QList>
@@ -26,11 +29,6 @@ private slots:
 
     void on_clear_producer_clicked();
 
-    //void on_genres_currentRowChanged(int currentRow);
-
-    //void on_producers_currentRowChanged(int currentRow);
-
-
     void on_genres_itemClicked(QListWidgetItem *item);
 
     void on_producers_itemClicked(QListWidgetItem *item);
@@ -39,8 +37,19 @@ private slots:
 
     void on_del_object_clicked();
 
+    void on_more_object_clicked();
+
+    void on_change_object_clicked();
+
+    void on_add_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    More* more;
+    Change* change;
+    Add* add;
 
     /*жанры*/
     QStringList genres;

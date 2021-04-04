@@ -3,5 +3,6 @@
         <file>films.txt</file>
         <file>genres.txt</file>
         <file>producers.txt</file>
+        <file>ico.png</file>  
     </qresource>
 </RCC>

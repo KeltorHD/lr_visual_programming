@@ -10,18 +10,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     this->inputFromFile();
+
+    this->more = new More(this);
+    this->change = new Change(this->ui->films, this);
+    this->add = new Add(this->ui->films, this->films, this);
 }
 
 MainWindow::~MainWindow()
 {
-    this->saveToFile();
     delete ui;
 }
 
 void MainWindow::inputFromFile()
 {
     /*жанры*/
-    QFile file_genre(":/genres.txt");
+    QFile file_genre("genres.txt");
 
     if (!file_genre.open(QIODevice::ReadOnly | QIODevice::Text))
         throw "not open file";
@@ -37,7 +40,7 @@ void MainWindow::inputFromFile()
     file_genre.close();
 
     /*режиссеры*/
-    QFile file_producers(":/producers.txt");
+    QFile file_producers("producers.txt");
 
     if (!file_producers.open(QIODevice::ReadOnly | QIODevice::Text))
         throw "not open file";
@@ -54,7 +57,7 @@ void MainWindow::inputFromFile()
     file_producers.close();
 
     /*фильмы*/
-    QFile file_films(":/films.txt");
+    QFile file_films("films.txt");
 
     if (!file_films.open(QIODevice::ReadOnly | QIODevice::Text))
         throw "not open file";
@@ -75,7 +78,38 @@ void MainWindow::inputFromFile()
 
 void MainWindow::saveToFile()
 {
+    QFile file_genres("genres.txt");
+    file_genres.open(QIODevice::WriteOnly);
 
+    QTextStream stream_genres(&file_genres);
+    stream_genres << this->genres.size() << "\n";
+    for (qsizetype i = 0; i < this->genres.size(); i++)
+    {
+        stream_genres << this->genres[i] << "\n";
+    }
+    file_genres.close();
+
+    QFile file_producers("producers.txt");
+    file_producers.open(QIODevice::WriteOnly);
+
+    QTextStream stream_producers(&file_producers);
+    stream_producers << this->producers.size() << "\n";
+    for (qsizetype i = 0; i < this->producers.size(); i++)
+    {
+        stream_producers << this->producers[i] << "\n";
+    }
+    file_producers.close();
+
+    QFile file_films("films.txt");
+    file_films.open(QIODevice::WriteOnly);
+
+    QTextStream stream_films(&file_films);
+    stream_films << this->films.size() << "\n";
+    for (qsizetype i = 0; i < this->films.size(); i++)
+    {
+        stream_films << this->films[i];
+    }
+    file_films.close();
 }
 
 QStringList MainWindow::selected_film(std::map<QString, QString> category)
@@ -216,4 +250,45 @@ void MainWindow::on_del_object_clicked()
             break;
         }
     }
+}
+
+void MainWindow::on_more_object_clicked()
+{
+    for (qsizetype i = 0; i < this->films.size(); i++)
+    {
+        if (this->films[i].getText() == this->ui->films->currentItem()->text())
+        {
+            this->more->set_film(this->films[i]);
+            this->more->show();
+
+            break;
+        }
+    }
+}
+
+void MainWindow::on_change_object_clicked()
+{
+    for (qsizetype i = 0; i < this->films.size(); i++)
+    {
+        if (this->films[i].getText() == this->ui->films->currentItem()->text())
+        {
+            this->change->set_film(&this->films[i], this->genres, this->producers);
+            this->change->show();
+
+            this->set_films();
+
+            break;
+        }
+    }
+}
+
+void MainWindow::on_add_clicked()
+{
+    this->add->set_context(this->genres, this->producers);
+    this->add->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->saveToFile();
 }

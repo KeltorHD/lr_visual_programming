@@ -34,6 +34,8 @@ public:
     QString getGenre() const;
     void setGenre(const QString &value);
 
+    friend QTextStream &operator<<(QTextStream& stream, const Film& film);
+
 private:
     QString name;
     QString producer;

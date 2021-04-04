@@ -80,3 +80,14 @@ void Film::input(QTextStream &file)
     this->year = file.readLine().toInt();
     this->description = file.readLine();
 }
+
+QTextStream &operator<<(QTextStream& stream, const Film& film)
+{
+    stream<<film.name<< "\n";
+    stream<<film.producer<< "\n";
+    stream<<film.country<< "\n";
+    stream<<film.genre<< "\n";
+    stream<<film.year<< "\n";
+    stream<<film.description<< "\n";
+    return stream;
+}
