@@ -29,7 +29,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="5" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
@@ -41,7 +41,21 @@
           <item row="1" column="0">
            <widget class="QListWidget" name="producers"/>
           </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="clear_producer">
+            <property name="text">
+             <string>Снять выделение</string>
+            </property>
+           </widget>
+          </item>
          </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="clear_genre">
+          <property name="text">
+           <string>Снять выделение</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -62,30 +76,42 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="add">
           <property name="text">
            <string>Добавить новый</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="more_object">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Подробнее</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="change_object">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Изменить</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="del_object">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Удалить</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>Снять выделение</string>
+          <property name="flat">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

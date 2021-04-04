@@ -1,7 +1,7 @@
 #include "film.h"
 
-Film::Film(QString name,  QString producer, QString country, QString description, int year)
-    :name(name), producer(producer), country(country), description(description), year(year)
+Film::Film(QString name,  QString producer, QString country, QString genre, QString description, int  year)
+    :name(name), producer(producer), country(country), description(description), year(year), genre(genre)
 {
 
 }
@@ -54,4 +54,29 @@ int Film::getYear() const
 void Film::setYear(int value)
 {
     year = value;
+}
+
+QString Film::getGenre() const
+{
+    return genre;
+}
+
+void Film::setGenre(const QString &value)
+{
+    genre = value;
+}
+
+QString Film::getText() const
+{
+    return this->name + " (" + QString::number(this->year) + ")";
+}
+
+void Film::input(QTextStream &file)
+{
+    this->name = file.readLine();
+    this->producer = file.readLine();
+    this->country = file.readLine();
+    this->genre = file.readLine();
+    this->year = file.readLine().toInt();
+    this->description = file.readLine();
 }

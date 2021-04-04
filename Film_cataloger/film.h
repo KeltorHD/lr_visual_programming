@@ -2,12 +2,20 @@
 #define FILM_H
 
 #include <QString>
+#include <QTextStream>
 
 class Film
 {
 public:
-    Film(QString name,  QString producer, QString country, QString description, int year);
+    Film(QString name,  QString producer, QString country, QString genre, QString description, int year);
+    Film() = default;
 
+    /*functions*/
+    QString getText() const;
+
+    void input(QTextStream& file);
+
+    /*get, set*/
     QString getName() const;
     void setName(const QString &value);
 
@@ -23,10 +31,14 @@ public:
     int getYear() const;
     void setYear(int value);
 
+    QString getGenre() const;
+    void setGenre(const QString &value);
+
 private:
     QString name;
     QString producer;
     QString country;
+    QString genre;
     QString description;
     int year;
 };
